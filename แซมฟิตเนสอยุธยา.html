@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Fitness Ayutthaya</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+    /* ----------------------------------
+       1. GLOBAL THEME (โทนสีขาว-เหลือง-ดำ สไตล์สตรีทวัยรุ่น)
+    ------------------------------------- */
+    :root {
+        --bg-dark: #646363;         /* พื้นหลังหลัก ดำลึกสุดเท่ */
+        --bg-card: #181717;         /* สีกล่องย่อย เทาเข้มมีมิติ */
+        --neon-yellow: #f1b943;     /* สีเหลืองทองนีออน เอกลักษณ์แซมฟิตเนส */
+        --text-white: #ffffff;      /* ตัวหนังสือหลัก ขาวเคลียร์ */
+        --text-gray: #aaaaaa;       /* ตัวหนังสือรอง */
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-white);
+        line-height: 1.6;
+        antialiased: text;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px 20px 20px;
+    }
+
+    .badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--neon-yellow), #f5cc72);
+        color: #090909;
+        padding: 10px 32px;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 1.2rem;
+        letter-spacing: 1.5px;
+        box-shadow: 0 6px 25px rgba(241, 185, 67, 0.35);
+        text-transform: uppercase;
+    }
+
+    /* ----------------------------------
+       2. MODERN SLIDER CONTAINER
+    ------------------------------------- */
+    .slider-container {
+        position: relative;
+        max-width: 950px;
+        margin: 20px auto;
+        overflow: hidden;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .slider {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        width: 100%;
+    }
+
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 10;
+        border-radius: 50%;
+        user-select: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .arrow:hover {
+        background: var(--neon-yellow);
+        color: #000;
+        box-shadow: 0 0 20px var(--neon-yellow);
+        border-color: transparent;
+    }
+
+    .arrow.left { left: 20px; }
+    .arrow.right { right: 20px; }
+
+    .dots {
+        text-align: center;
+        margin: 20px 0 40px;
+    }
+
+    .dot {
+        height: 6px;
+        width: 20px;
+        margin: 0 6px;
+        background: #333333;
+        border-radius: 3px;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        background: linear-gradient(90deg, var(--neon-yellow), #f5cc72);
+        width: 38px;
+    }
+
+    /* ----------------------------------
+       3. LAYOUT & CARDS
+    ------------------------------------- */
+    section {
+        max-width: 1000px;
+        margin: 0 auto 35px;
+        padding: 35px;
+        background: var(--bg-card);
+        border-radius: 24px;
+        box-sizing: border-box;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    section h2 {
+        margin-top: 0;
+        font-size: 1.6rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-left: 6px solid var(--neon-yellow);
+        padding-left: 15px;
+        margin-bottom: 25px;
+        color: var(--text-white);
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+    }
+
+    .info-item {
+        background: rgba(255, 255, 255, 0.02);
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+    }
+    
+    .info-item:hover {
+        border-color: rgba(241, 185, 67, 0.3);
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .info-item h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--neon-yellow);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .info-item p {
+        margin: 0;
+        color: var(--text-gray);
+        font-size: 0.95rem;
+    }
+
+    .highlight-yellow {
+        color: #ffffff !important;
+        background: rgba(241, 185, 67, 0.2);
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-weight: 700;
+        border: 1px solid rgba(241, 185, 67, 0.3);
+    }
+
+    iframe {
+        width: 100%;
+        height: 380px;
+        border: none;
+        border-radius: 16px;
+        background: #000;
+    }
+
+    /* ----------------------------------
+       4. GEARS & MACHINES ZONE
+    ------------------------------------- */
+    .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .service-item {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 16px;
+        border-radius: 18px;
+        gap: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .service-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--neon-yellow);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px rgba(241, 185, 67, 0.15);
+    }
+
+    .service-item img {
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .service-item:hover img {
+        transform: scale(1.04);
+    }
+
+    .service-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .service-item h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .service-item p {
+        margin: 6px 0 0 0;
+        color: var(--neon-yellow);
+        font-weight: 800;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        background: rgba(241, 185, 67, 0.12);
+        padding: 2px 10px;
+        border-radius: 6px;
+        display: inline-block;
+        align-self: flex-start;
+    }
+
+    /* ----------------------------------
+       5. REVIEWS ZONE (รีวิวผู้ใช้จริง)
+    ------------------------------------- */
+    .review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .review-card {
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .review-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--neon-yellow);
+        box-shadow: 0 15px 30px rgba(241, 185, 67, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .review-img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .review-content {
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .review-name {
+        font-weight: 800;
+        font-size: 1.15rem;
+        color: #ffffff;
+    }
+
+    .review-badge {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .review-stars {
+        color: var(--neon-yellow);
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .review-text {
+        color: #d1d1d1;
+        line-height: 1.6;
+        margin: 0;
+        font-size: 0.95rem;
+        font-style: italic;
+    }
+
+    /* ----------------------------------
+       6. SOCIAL RATINGS & SHOPS
+    ------------------------------------- */
+    .social-rating-container {
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        text-align: center;
+    }
+
+    .social-rating-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .rating-badge-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .rating-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 12px 24px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .rating-badge:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--neon-yellow);
+    }
+
+    .platform-icon { font-size: 1.3rem; }
+    .rating-info { text-align: left; }
+    
+    .rating-score {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: #ffffff;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .rating-score span.star-color { color: var(--neon-yellow); }
+    .rating-count { font-size: 0.8rem; color: var(--text-gray); margin: 2px 0 0 0; }
+
+    .shop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .shop-tag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 14px 20px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        font-weight: 600;
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    .shop-tag:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--neon-yellow);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(241, 185, 67, 0.1);
+    }
+
+    /* ----------------------------------
+       7. CONTACTS & BUTTONS
+    ------------------------------------- */
+    .contact-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .contact-card {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 16px 24px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--neon-yellow);
+        box-shadow: 0 8px 20px rgba(241, 185, 67, 0.15);
+    }
+
+    .contact-avatar {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        background: #000000;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .contact-card:hover .contact-avatar {
+        background: var(--neon-yellow);
+        color: #000;
+    }
+
+    .contact-details { display: flex; flex-direction: column; }
+    .contact-details span:first-child { font-size: 0.75rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
+
+    .button-container { text-align: center; margin: 50px 0; }
+    
+    .button {
+        display: inline-block;
+        margin: 10px;
+        padding: 14px 40px;
+        background: transparent;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        border: 2px solid var(--neon-yellow);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .button:hover {
+        background: var(--neon-yellow);
+        color: #000000;
+        box-shadow: 0 8px 25px rgba(241, 185, 67, 0.3);
+        transform: translateY(-3px);
+    }
+
+    .button.secondary { border-color: #ffffff; }
+    .button.secondary:hover { background: #ffffff; color: #000; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
+
+    .maps-link { display: inline-block; margin-top: 15px; color: var(--neon-yellow); font-weight: bold; text-decoration: none; transition: all 0.3s; }
+    .maps-link:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(241, 185, 67, 0.4); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="badge">SAM FITNESS AYUTTHAYA</div>
+</header>
+
+<div class="slider-container">
+    <div class="arrow left" onclick="prevSlide()">❮</div>
+    <div class="slider" id="slider">
+        <div class="slide"><img src="img/อยุธยา1.jpg" alt="แซมฟิตเนส อยุธยา 1"></div>
+        <div class="slide"><img src="img/Aya1.jpg" alt="แซมฟิตเนส อยุธยา 2"></div>
+        <div class="slide"><img src="img/อยุธยา4.jpg" alt="แซมฟิตเนส อยุธยา 3"></div>
+        <div class="slide"><img src="img/อยุธยา3.jpg" alt="แซมฟิตเนส อยุธยา 4"></div>
+    </div>
+    <div class="arrow right" onclick="nextSlide()">❯</div>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<section>
+    <h2>Service Info</h2>
+    <div class="info-grid">
+        <div class="info-item">
+            <h3>🕒 เวลาเปิดให้บริการ</h3>
+            <p>วันจันทร์ - วันศุกร์: <span class="highlight-yellow">09:00 - 24:00 น.</span></p>
+            <p style="margin-top: 6px;">วันเสาร์ - วันอาทิตย์: <span class="highlight-yellow">12:00 - 24:00 น.</span></p>
+        </div>
+        <div class="info-item">
+            <h3>🚀 ข้อมูลยิม</h3>
+            <p>เปิดให้บริการวันที่ 4 มิถุนายน พ.ศ. 2565</p>
+        </div>
+        <div class="info-item">
+            <h3>🏢 รูปแบบอาคาร</h3>
+            <p>อาคารพาณิชย์ขนาด 3 ชั้น เต็มอิ่ม 2 คูหา</p>
+        </div>
+        <div class="info-item">
+            <h3>📐 พื้นที่ใช้สอย</h3>
+            <p>กว้างขวางกว่า <span class="highlight-yellow">380 ตารางเมตร</span> แบ่งโซนเครื่องเล่นแต่ละชั้นอย่างเป็นสัดส่วน ไม่แออัด</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Location & Parking</h2>
+    <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="info-item">
+            <h3>📍 พิกัดโครงการ</h3>
+            <p>ตั้งอยู่ในโครงการหมู่บ้านสบายสบาย (บนเส้นถนนด้านหลังโลตัสอยุธยา มุ่งหน้าไปยังวัดใหญ่ชัยมงคล) ค้นหาง่ายมากครับ</p>
+        </div>
+        <div class="info-item">
+            <h3>🚗 การจอดรถ</h3>
+            <p><strong>รถยนต์:</strong> สามารถจอดได้ที่พื้นที่ส่วนกลางของโครงการฟรี</p>
+            <p style="margin-top: 6px;"><strong>รถมอเตอร์ไซค์:</strong> มีพื้นที่จอดจัดไว้ให้บริเวณหน้าร้าน สะดวกปลอดภัย</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Google Map</h2>
+    <iframe src="https://maps.google.com/maps?q=แซมฟิตเนส%20อยุธยา&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+    <p style="margin-top:15px; margin-bottom: 0;">📍 กดลิงก์ด้านล่างเพื่อเปิดการนำทางบนมือถือของคุณ</p>
+    <a href="http://maps.google.com/?q=แซมฟิตเนส+อยุธยา" target="_blank" class="maps-link">
+        เปิดใน Google Maps App ↗
+    </a>
+</section>
+
+<section>
+    <h2>Gym Vibe (Video)</h2>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+</section>
+
+<section>
+    <h2>Gear & Machines (บริการของเรา)</h2>
+    <div class="service-grid">
+        
+        <div class="service-item">
+            <img src="img/download (9).jfif" alt="ลู่วิ่ง">
+            <div class="service-info">
+                <h3>ลู่วิ่งไฟฟ้า</h3>
+                <p>6 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (2).jfif" alt="จักรยาน">
+            <div class="service-info">
+                <h3>จักรยานเอนปั่น</h3>
+                <p>2 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (3).jfif" alt="อีลิปติคอล">
+            <div class="service-info">
+                <h3>อีลิปติคอล</h3>
+                <p>3 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (7).jfif" alt="เครื่องเดินบันได">
+            <div class="service-info">
+                <h3>เครื่องเดินบันได</h3>
+                <p>1 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (4).jfif" alt="เครื่องสมิท">
+            <div class="service-info">
+                <h3>เครื่องสมิท (Smith)</h3>
+                <p>1 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (5).jfif" alt="ดัมเบลล์">
+            <div class="service-info">
+                <h3>ดัมเบลล์พรีเมียม</h3>
+                <p>5-100 ปอนด์</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (6).jfif" alt="บาร์เบลล์">
+            <div class="service-info">
+                <h3>บาร์เบลล์</h3>
+                <p>10-30 ปอนด์</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/download (8).jfif" alt="ม้านั่ง">
+            <div class="service-info">
+                <h3>ม้านั่งปรับระดับ</h3>
+                <p>4 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/lat pulldown.jfif" alt="Lat Pulldown">
+            <div class="service-info">
+                <h3>Lat Pulldown</h3>
+                <p>1 เครื่อง</p>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <img src="img/Pearl Delt.png" alt="Peral Delt/Pec Fly">
+            <div class="service-info">
+                <h3>Peral Delt / Pec Fly</h3>
+                <p>1 เครื่อง</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Real Voice (รีวิวจากผู้ใช้จริง)</h2>
+    <div class="review-grid">
+        
+        <div class="review-card">
+            <img src="img/reay1.png" alt="รีวิวคุณ Nooker" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ Nooker</div>
+                    <span class="review-badge">Verified Member</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"เครื่องดีมาก เล่นโดนสุดๆครับ พนักงานดีทั้งคนรับสายและต้อนรับ แอร์เย็น ห้องน้ำสะอาด มีผ้าและน้ำยาเช็ดเยอะมีเครื่องวัดมวลกล้ามเนื้อด้วย"</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay2.png" alt="รีวิวคุณ wassa b." class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ wassa b.</div>
+                    <span class="review-badge">Local Guide</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"ฟิตเนสเครื่องเยอะมาก มีที่จอดรถ แอร์ฉ่ำ สะอาด สะดวก"</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay3.png" alt="รีวิวคุณ มลฤดี" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ มลฤดี แจ้งหิรัญ</div>
+                    <span class="review-badge">Gym Lover</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"ให้ 5 ดาวเลยค่ะ ทางร้านเครื่องเล่นเยอะ ร้านสะอาด พูดจาดีแนะนำดี โปรโมทชั่นดี แนะนำเลยค่ะฟิตเนสแซม ตอนนี้ทางร้านมี 3 สาขาแล้วนะค่ะ อยุธยา, โรจนะ, ธรรมศาสตร์ ไปก่อนสุขภาพดีก่อนนะค่ะ"</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay4.png" alt="รีวิวคุณ Ww E" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ Ww E</div>
+                    <span class="review-badge">Active Lifter</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"เครื่องออกกำลังกายเยอะ ราคาไม่แพง เล่นฟิตเนสแล้วสบายใจ เจ้าหน้าที่น่ารัก สมาชิกฟิตเนสเป็นกันเอง"</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay5.png" alt="รีวิวคุณ อธิวันธ์" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ อธิวันธ์ แจ่มแจ้ง</div>
+                    <span class="review-badge">Night Lifter</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"เครื่องเล่นดีมากเลยค่ะ ปิดดึกด้วย ราคาไม่แพง คนในยิมก็เป็นกันเองมาก"</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay6.png" alt="รีวิวคุณ Brodie" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ Brodie</div>
+                    <span class="review-badge">International</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐</div>
+                <p class="review-text">"Decent gym. Drop in is 120 baht. Tons of equipment packed into a relatively small space, but the crowd is nice she chill so it's easy to work around people. Aircon is set to a nice temperature. Awesome."</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="img/reay7.png" alt="รีวิวคุณ Fan" class="review-img" onerror="this.src='https://placehold.co/400x300/333/fff?text=Review+Image'">
+            <div class="review-content">
+                <div class="review-header">
+                    <div class="review-name">คุณ Fan</div>
+                    <span class="review-badge">Weekly Pass</span>
+                </div>
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Came here yesterday and purchased a pass for 6 days for 600 Baht that can use anytime. The staff did not speak English much but some other customers helped. The gym is not really big but has 3 floors. Very clean though!"</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="social-rating-container">
+        <div class="social-rating-title">🔥 การันตีความเด็ด! อ่านรีวิวเพิ่มเติมจากโซเชียล</div>
+        <div class="rating-badge-grid">
+            <div class="rating-badge">
+                <span class="platform-icon">🌐</span>
+                <div class="rating-info">
+                    <p class="rating-score">Google 4.9 <span class="star-color">★</span></p>
+                    <p class="rating-count">62 รีวิวจากผู้ใช้จริง</p>
+                </div>
+            </div>
+            <div class="rating-badge">
+                <span class="platform-icon">👍</span>
+                <div class="rating-info">
+                    <p class="rating-score">Facebook แนะนำ 100%</p>
+                    <p class="rating-count">56 รีวิวจากแฟนเพจ</p>
+                </div>
+            </div>
+            <div class="rating-badge">
+                <span class="platform-icon">🎵</span>
+                <div class="rating-info">
+                    <p class="rating-score">TikTok 4.7 <span class="star-color">★</span></p>
+                    <p class="rating-count">12 รีวิวจากชาวติ๊กต็อก</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>ร้านค้าใกล้เคียง</h2>
+    <p style="color: var(--text-gray); margin-top: -10px; margin-bottom: 20px; font-size: 0.95rem;">
+        📍 ออกกำลังกายเสร็จแล้ว แวะเติมโปรตีน คาเฟอีน หรือนวดผ่อนคลายกล้ามเนื้อต่อได้รอบยิม:
+    </p>
+    <div class="shop-grid">
+        <div class="shop-tag">แกงใต้ครัวชาวเล</div>
+        <div class="shop-tag">HaGU Matcha</div>
+        <div class="shop-tag">Miki Relax House</div>
+        <div class="shop-tag">อาร์ทข้าวมันไก่จ๋า</div>
+        <div class="shop-tag">มิสเตอร์บีนชาบู</div>
+        <div class="shop-tag">Lazycat.coffee</div>
+        <div class="shop-tag">เปียง ข้าวมันไก่</div>
+        <div class="shop-tag">ขนมจีน แม่บังอร</div>
+    </div>
+</section>
+
+<section>
+    <h2>Connect With Us (ช่องทางติดต่อสาขา)</h2>
+    <p style="color: var(--text-gray); margin-top: -10px; margin-bottom: 20px; font-size: 0.95rem;">
+        ⚡ สอบถามค่าบริการ สมัครสมาชิก หรือเช็คเครื่องเล่นว่าง ทักหาเราได้ทุกช่องทางตลอด 24 ชม.
+    </p>
+    <div class="contact-container">
+        <a href="https://www.facebook.com/SamFitnessAyutthaya/" target="_blank" class="contact-card">
+            <div class="contact-avatar">🌐</div>
+            <div class="contact-details">
+                <span>Facebook Page</span>
+                <span>Sam Fitness Ayutthaya</span>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/YOUR_IG_LINK" target="_blank" class="contact-card">
+            <div class="contact-avatar">📸</div>
+            <div class="contact-details">
+                <span>Instagram Feed</span>
+                <span>@samfitness_ayutthaya</span>
+            </div>
+        </a>
+        <a href="https://lin.ee/s869SfX" target="_blank" class="contact-card">
+            <div class="contact-avatar">💬</div>
+            <div class="contact-details">
+                <span>LINE Official</span>
+                <span>@samfitness (มี @)</span>
+            </div>
+        </a>
+        <a href="https://www.tiktok.com/@samfitness2022?_r=1&_t=ZS-96rxiCALkMC" target="_blank" class="contact-card">
+            <div class="contact-avatar">🎵</div>
+            <div class="contact-details">
+                <span>TikTok Studio</span>
+                <span>@samfitness_ayutthaya</span>
+            </div>
+        </a>
+        <a href="tel:087-3658810" class="contact-card">
+            <div class="contact-avatar">📞</div>
+            <div class="contact-details">
+                <span>Hotline Call</span>
+                <span>087-3658810</span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<div class="button-container">
+    <a href="หน้าแรกแซมฟิตเนส.html" class="button">กลับหน้าหลัก</a>
+    <a href="สาขา.html" class="button secondary">กลับหน้าสาขา</a>
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+const dotsContainer = document.getElementById("dots");
+let currentIndex = 0;
+let slideInterval;
+
+slides.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if(index === 0) dot.classList.add("active");
+
+    dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+        resetTimer(); 
+    });
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".dot");
+
+function updateSlider(){
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    if(dots[currentIndex]) {
+        dots[currentIndex].classList.add("active");
+    }
+}
+
+function nextSlide(){
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+}
+
+function prevSlide(){
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider();
+}
+
+function startTimer() {
+    slideInterval = setInterval(nextSlide, 4000);
+}
+
+function resetTimer() {
+    clearInterval(slideInterval);
+    startTimer();
+}
+
+startTimer();
+</script>
+
+</body>
+</html>
