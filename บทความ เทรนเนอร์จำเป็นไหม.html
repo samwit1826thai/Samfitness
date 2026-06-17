@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เทรนเนอร์จำเป็นไหม? สำหรับมือใหม่ | Sam Fitness</title>
+
+<!-- นำเข้าฟอนต์ Kanit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* การตั้งค่าพื้นฐาน: ถอดแบบความคลีนและสบายตามาจากภาพ image_e4a6a0.jpg */
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background: #f4f5f7; /* สีพื้นหลังเทาอ่อนนุ่มนวล สบายตา */
+  color: #2b2b2b; /* ตัวอักษรสีเข้มจัด แต่อ่อนกว่าดำสนิทเพื่อไม่ให้ล้าสายตา */
+  line-height: 2.0; /* เพิ่มช่องว่างระหว่างบรรทัดให้โปร่งเป็นพิเศษ */
+  letter-spacing: 0.3px;
+}
+
+/* Banner หัวบทความสไตล์โมเดิร์น */
+.article-banner {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)), 
+              url('https://images.unsplash.com/photo-1546483875-ad9014c88eba?q=80&w=1200') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.banner-content {
+  max-width: 800px;
+}
+
+.banner-content h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0 15px 0;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.banner-content h1 span {
+  color: #e5a93b; /* สีเหลืองมัสตาร์ดพรีเมียม ถอดสีจากปุ่มในภาพ */
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: #e5a93b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* คอนเทนเนอร์เนื้อหา */
+.article-container {
+  max-width: 740px; /* บีบหน้ากระดาษให้พอดีสายตา ไม่ต้องกวาดตาเยอะ */
+  margin: 0 auto;
+  padding: 50px 20px 100px 20px;
+}
+
+/* การ์ดเนื้อหาแยกชิ้น สไตล์โมเดิร์นมินิมอล สีขาวคลีนแบบในภาพ */
+.content-block {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* เงาบางๆ ละมุนตา */
+  border: 1px solid #eaeaea;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #4a4a4a;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+/* ไฮไลท์โทนอุ่นและสุภาพตามมู้ดบอร์ด */
+.highlight-mustard {
+  color: #d2931b;
+  font-weight: 600;
+}
+
+.highlight-dark {
+  color: #000000;
+  font-weight: 600;
+  border-bottom: 2px solid #e5a93b;
+}
+
+/* หัวข้อบทความภายใน */
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 span {
+  background: #e5a93b;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* บล็อกโควทข้อความเน้นย้ำ */
+blockquote {
+  background: #fff9ed; /* พื้นเหลืองครีมอ่อน สบายตามาก */
+  border-left: 4px solid #e5a93b;
+  margin: 40px 0;
+  padding: 25px;
+  border-radius: 0 12px 12px 0;
+  text-align: center;
+}
+
+blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #b77b06;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* กล่องสรุปใจความสำคัญ */
+.summary-box {
+  background: #1e1e1e; /* ใช้สีดำเข้มตัดเพื่อความมีมิติ */
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 45px;
+  color: #ffffff;
+}
+
+.summary-box h3 {
+  color: #e5a93b;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.summary-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.summary-list li {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+.summary-list li strong {
+  color: #ffffff;
+}
+.summary-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* โซนปุ่มปิดท้ายบทความ */
+.cta-zone {
+  text-align: center;
+  margin-top: 50px;
+  padding: 45px 30px;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.cta-zone h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ปุ่มหลักใช้สีเหลืองมัสตาร์ดสไตล์แซมฟิตเนส */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: #e5a93b;
+  color: #000000;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  margin: 10px;
+  box-shadow: 0 4px 12px rgba(229, 169, 59, 0.2);
+}
+
+.btn:hover {
+  background: #cb9228;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(229, 169, 59, 0.35);
+}
+
+/* ปุ่มรองสีเทาอ่อนกลืนกับดีไซน์ */
+.btn-secondary {
+  background: #eaeaea;
+  color: #4a4a4a;
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: #dcdcdc;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Banner หัวบทความ -->
+<div class="article-banner">
+  <div class="banner-content">
+    <div class="meta-info">✏️ FIT KNOWLEDGE BY SAM FITNESS</div>
+    <h1>เทรนเนอร์จำเป็นไหม? <span>เจาะลึกข้อดีสำหรับมือใหม่ ไม่ให้เสียเวลาฟรี</span></h1>
+    <div class="meta-info" style="color: #bbb; font-size: 0.8rem; font-weight: 400; margin-top: 10px;">⏱️ ใช้เวลาอ่านประมาณ 3 นาที</div>
+  </div>
+</div>
+
+<!-- ส่วนเนื้อหาบทความ -->
+<div class="article-container">
+  
+  <!-- เกริ่นนำ -->
+  <div class="content-block" style="background: transparent; border: none; padding: 0; box-shadow: none; margin-bottom: 40px;">
+    <p>
+      คำถามยอดฮิตสำหรับคนที่พึ่งตัดสินใจก้าวขาเข้ายิมสัปดาห์แรกคือ <strong>"เราจำเป็นต้องจ้างเทรนเนอร์ไหม?"</strong> เล่นเองดูคลิปในยูทูปเอาก็ได้หรือเปล่า? 
+    </p>
+    <p>
+      หลายคนมองว่าค่าบริการเทรนเนอร์ส่วนตัวเป็นสิ่งฟุ่มเฟือย แต่เชื่อมสิครับว่า มือใหม่เกิน <span class="highlight-mustard">80% ที่เลือกเล่นเอง มักจบลงด้วยการถอดใจเลิกเล่นไปภายใน 3 เดือน</span> เพราะไม่เห็นผลลัพธ์ หรือร้ายแรงกว่านั้นคือ... บาดเจ็บจนต้องพักยาว
+    </p>
+    <p>
+      บทความนี้เราจะมาเจาะลึกเหตุผลแบบไม่อ้อมค้อม ว่าทำไมการลงทุนกับเทรนเนอร์ในช่วงเริ่มต้น ถึงเป็นวิธีที่จะช่วยให้คุณ <span class="highlight-dark">"ไม่เสียเวลาและเงินค่าสมาชิกยิมไปฟรีๆ"</span> ครับ
+    </p>
+  </div>
+
+  <!-- ข้อ 1 -->
+  <div class="content-block">
+    <h2><span>01</span> ทางลัดในการจัดฟอร์มท่าทาง</h2>
+    <p>
+      การดูคลิปวิดีโอแล้วทำตาม ดูเหมือนจะง่ายครับ แต่ในความเป็นจริง <strong>มุมกล้องในคลิปไม่สามารถบอกได้ว่าคุณกำลังแอ่นหลังมากเกินไปไหม</strong> หรือคุณกำลังใช้กล้ามเนื้อผิดส่วนอยู่หรือเปล่า
+    </p>
+    <p>
+      การฝึกท่าทางที่ผิดซ้ำๆ ไม่เพียงแต่ทำให้กล้ามเนื้อไม่พัฒนา แต่กำลังสะสมอาการบาดเจ็บให้ข้อต่อและกระดูกสันหลังของคุณโดยไม่รู้ตัว
+    </p>
+    <p>
+      เทรนเนอร์ส่วนตัวจะทำหน้าที่เป็น "กระจกสะท้อนตัวจริง" ที่คอยจัดสรีระ ปรับองศาการวางเท้า และโฟกัสจุดขยับของข้อต่อแบบเซ็ตต่อเซ็ต เพื่อให้มั่นใจว่าทุกแรงที่ยกไปนั้นเข้ากล้ามเนื้อเป้าหมาย 100% สลัดปัญหาเล่นอกแต่ปวดบ่าทิ้งไปได้เลยครับ
+    </p>
+  </div>
+
+  <!-- โควทคำพูด -->
+  <blockquote>
+    <p>"การยกน้ำหนักที่เบาแต่ฟอร์มเป๊ะ เห็นผลไวกว่ายกหนักๆ แต่ฟอร์มพังหลายเท่าตัว"</p>
+  </blockquote>
+
+  <!-- ข้อ 2 -->
+  <div class="content-block">
+    <h2><span>02</span> โปรแกรมที่สร้างมาเพื่อ "สรีระของคุณ"</h2>
+    <p>
+      ร่างกายของคนเราไม่เหมือนกัน บางคนโครงสร้างขายาว บางคนไหล่ติด บางคนมีโรคประจำตัว หรือมีอาการออฟฟิศซินโดรม การไปก๊อปปี้ตารางฝึกของดาราหรือยูทูบเบอร์ชื่อดังมาเล่นตาม จึงไม่ใช่คำตอบที่ถูกต้องเสมอไป 
+    </p>
+    <p>
+      โค้ชมืออาชีพจะเริ่มจากการ <span class="highlight-mustard">ประเมินมวลร่างกาย (Body Assessment)</span> ตรวจเช็คความยืดหยุ่นของข้อต่อ และออกแบบตารางฝึกที่เหมาะสมกับเป้าหมายเฉพาะตัว ไม่ว่าจะเป็นการลีนไขมันเร่งด่วน หรือการปั้นกล้ามเนื้อสำหรับคนผอม เพื่อให้คุณเดินไปข้างหน้าในเส้นทางที่ถูกต้องตั้งแต่วันแรก
+    </p>
+  </div>
+
+  <!-- ข้อ 3 -->
+  <div class="content-block">
+    <h2><span>03</span> ปลุกพลังและข้ามขีดจำกัดเดิม</h2>
+    <p>
+      เวลาเราเล่นเอง พอเริ่มรู้สึกเหนื่อยหรือล้า สมองของเราจะสั่งให้ "พอแล้ว" ทันที ซึ่งนั่นทำให้เราไม่เคยข้ามผ่านขีดจำกัดเดิมได้เลย แต่ในทางวิทยาศาสตร์ กล้ามเนื้อจะพัฒนาได้ดีที่สุดในช่วง <span class="highlight-mustard">3 ครั้งสุดท้ายก่อนที่แรงจะหมด (Training to Failure)</span>
+    </p>
+    <p>
+      การมีเทรนเนอร์ยืนคุมอยู่ข้างๆ นอกจากจะช่วยเซฟความปลอดภัยให้คุณแล้ว โค้ชจะเป็นแรงกระตุ้นชั้นดีที่ช่วยให้คุณงัด "แรงฮึดสุดท้าย" ออกมาได้ ซึ่งนั่นคือจุดตัดสำคัญที่ทำให้หุ่นของคุณเปลี่ยนแปลงอย่างชัดเจน
+    </p>
+  </div>
+
+  <!-- กล่องสรุป -->
+  <div class="summary-box">
+    <h3>📌 สรุปความคุ้มค่า: เล่นเอง VS มีเทรนเนอร์</h3>
+    <ul class="summary-list">
+      <li><strong>เล่นเอง:</strong> ประหยัดเงินช่วงแรก แต่เสี่ยงเสียเวลาฟรีไปหลายเดือนหากหลงทาง หรืออาจบาดเจ็บจนต้องเสียค่ารักษาที่แพงกว่า</li>
+      <li><strong>มีเทรนเนอร์:</strong> ลงทุนครั้งเดียวในช่วงเริ่มต้น เพื่อซื้อความรู้ ฟอร์มท่าที่ถูกต้อง และสร้างวินัยติดตัวไปใช้ได้ตลอดชีวิต</li>
+    </ul>
+  </div>
+
+  <!-- โซนปิดท้าย ชวนคุย/สมัคร -->
+  <div class="cta-zone">
+    <h4>🔥 อยากเปลี่ยนหุ่นแบบจริงจัง ไม่เสียเวลาทิ้งฟรีใช่ไหม?</h4>
+    <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">ให้ทีมโค้ชระดับมืออาชีพของ Sam Fitness ดูแลคุณตั้งแต่วันนี้ คอร์สทดลองเรียนราคาเริ่มต้นเพียง 700 บาท!</p>
+    <a href="#" class="btn">ปรึกษาเทรนเนอร์ฟรี</a>
+  </div>
+
+  <!-- ปุ่มกลับหน้าหลัก -->
+  <div style="text-align: center; margin-top: 50px;">
+    <a href="PT1.html" class="btn btn-secondary">← ย้อนกลับ</a>
+    <a href="sam.html" class="btn btn-secondary">🏠 กลับหน้าแรก</a>
+  </div>
+
+</div>
+
+</body>
+</html>
