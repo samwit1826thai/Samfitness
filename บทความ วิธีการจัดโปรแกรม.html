@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โปรแกรมออกกำลังกาย จัดตารางฝึกหนัก-เบา | Sam Fitness</title>
+
+<!-- นำเข้าฟอนต์ Kanit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* การตั้งค่าพื้นฐาน: คุมโทนโมเดิร์นคลีน สบายตาตามภาพลักษณ์ของยิม */
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background: #f4f5f7; /* พื้นหลังเทาอ่อนนุ่มนวล */
+  color: #2b2b2b; /* ตัวอักษรสีเข้มจัด แต่อ่อนกว่าดำสนิทเพื่อลดความล้าของสายตา */
+  line-height: 2.0; /* เพิ่มช่องว่างระหว่างบรรทัดให้อ่านง่าย */
+  letter-spacing: 0.3px;
+}
+
+/* Banner หัวบทความ */
+.article-banner {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), 
+              url('https://images.unsplash.com/photo-1434596955112-0f6219cba7d1?q=80&w=1200') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.banner-content {
+  max-width: 800px;
+}
+
+.banner-content h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0 15px 0;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.banner-content h1 span {
+  color: #e5a93b; /* สีเหลืองมัสตาร์ดพรีเมียม */
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: #e5a93b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* คอนเทนเนอร์เนื้อหา */
+.article-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 50px 20px 100px 20px;
+}
+
+/* การ์ดเนื้อหาขาวคลีน */
+.content-block {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaeaea;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #4a4a4a;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+.highlight-mustard {
+  color: #d2931b;
+  font-weight: 600;
+}
+
+.highlight-dark {
+  color: #000000;
+  font-weight: 600;
+  border-bottom: 2px solid #e5a93b;
+}
+
+/* หัวข้อบทความภายใน */
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 span {
+  background: #e5a93b;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* บล็อกโควทข้อความเน้นย้ำ */
+blockquote {
+  background: #fff9ed;
+  border-left: 4px solid #e5a93b;
+  margin: 40px 0;
+  padding: 25px;
+  border-radius: 0 12px 12px 0;
+  text-align: center;
+}
+
+blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #b77b06;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* กล่องสรุปใจความสำคัญ */
+.summary-box {
+  background: #1e1e1e; /* ใช้สีดำเข้มตัดเพื่อความมีมิติ */
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 45px;
+  color: #ffffff;
+}
+
+.summary-box h3 {
+  color: #e5a93b;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.summary-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.summary-list li {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+.summary-list li strong {
+  color: #ffffff;
+}
+.summary-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* โซนปุ่มปิดท้ายบทความ */
+.cta-zone {
+  text-align: center;
+  margin-top: 50px;
+  padding: 45px 30px;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.cta-zone h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ปุ่มหลักเหลืองมัสตาร์ด */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: #e5a93b;
+  color: #000000;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  margin: 10px;
+  box-shadow: 0 4px 12px rgba(229, 169, 59, 0.2);
+}
+
+.btn:hover {
+  background: #cb9228;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(229, 169, 59, 0.35);
+}
+
+/* ปุ่มรองสีเทาอ่อนกลืนกับดีไซน์ */
+.btn-secondary {
+  background: #eaeaea;
+  color: #4a4a4a;
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: #dcdcdc;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Banner หัวบทความ -->
+<div class="article-banner">
+  <div class="banner-content">
+    <div class="meta-info">✏️ FIT KNOWLEDGE BY SAM FITNESS</div>
+    <h1>คัมภีร์จัดโปรแกรมออกกำลังกาย <span>วิธีการจัดตารางฝึกหนัก-เบา สไตล์พรีเมียมให้เห็นผลลัพธ์จริง</span></h1>
+    <div class="meta-info" style="color: #bbb; font-size: 0.8rem; font-weight: 400; margin-top: 10px;">⏱️ ใช้เวลาอ่านประมาณ 3 นาที</div>
+  </div>
+</div>
+
+<!-- ส่วนเนื้อหาบทความ -->
+<div class="article-container">
+  
+  <!-- เกริ่นนำ -->
+  <div class="content-block" style="background: transparent; border: none; padding: 0; box-shadow: none; margin-bottom: 40px;">
+    <p>
+      คุณเคยสงสัยไหมครับว่า ทำไมคนที่เข้ายิมและออกกำลังกายอย่างเอาเป็นเอาตายทุกวัน บางครั้งกลับดูเหนื่อยล้า ซูบซีด หรือหุ่นไม่เปลี่ยนไปจากเดิมเลย? ในทางตรงกันข้าม คนที่ซ้อมสัปดาห์ละ 3-4 วัน และมีวันหยุดพักผ่อนสบายๆ กลับมีหุ่นที่ฟิต เฟิร์ม และพัฒนารูปร่างได้อย่างรวดเร็ว
+    </p>
+    <p>
+      ความลับของเรื่องนี้ไม่ใช่เรื่องของพันธุกรรมครับ แต่เป็นเรื่องของ <strong>"ศิลปะในการจัดตารางซ้อม"</strong> การออกกำลังกายที่เห็นผลลัพธ์ดีที่สุดในระดับสากล ไม่ใช่การอัดหนักให้หมดแรงในทุกๆ วัน แต่คือการจัดตารางแบบ <span class="highlight-mustard">หนักสลับเบา (Periodization)</span> เพื่อให้ร่างกายได้เติบโตและฟื้นฟูอย่างมีประสิทธิภาพสูงสุดครับ
+    </p>
+  </div>
+
+  <!-- ข้อ 1 -->
+  <div class="content-block">
+    <h2><span>01</span> เข้าใจหลักการ Progressive Overload (การพัฒนาแบบก้าวหน้า)</h2>
+    <p>
+      หากคุณยกดัมเบลน้ำหนัก 5 กิโลกรัมเท่าเดิม จำนวนครั้งเท่าเดิม สัปดาห์แล้วสัปดาห์เล่า ร่างกายจะไม่มีเหตุผลในการสร้างกล้ามเนื้อเพิ่มเลยครับ เพราะมันชินกับแรงต้านนั้นไปแล้ว
+    </p>
+    <p>
+      การจัดโปรแกรมสไตล์พรีเมียมจะเน้นการเพิ่ม <span class="highlight-dark">"ความท้าทาย"</span> ให้กล้ามเนื้อทีละน้อย ไม่ว่าจะเป็นการเพิ่มน้ำหนักที่ยก การเพิ่มจำนวนครั้ง หรือการลดเวลานอนพักระหว่างเซ็ต แต่การจะเพิ่มสิ่งเหล่านี้ได้ ร่างกายต้องผ่านการจัดสรรวันฝึกที่หนักหน่วงสลับกับวันฝึกที่เบาลง เพื่อเปิดโอกาสให้เส้นใยกล้ามเนื้อที่ถูกทำลายได้ซ่อมแซมตัวเองจนแข็งแกร่งกว่าเดิม
+    </p>
+  </div>
+
+  <!-- โควทคำพูด -->
+  <blockquote>
+    <p>"กล้ามเนื้อไม่ได้เติบโตตอนที่คุณกำลังยกน้ำหนัก แต่ขยายใหญ่ขึ้นตอนที่คุณกำลังพักผ่อนและกินอาหารที่ดี"</p>
+  </blockquote>
+
+  <!-- ข้อ 2 -->
+  <div class="content-block">
+    <h2><span>02</span> วางแผนตารางแบบ "สัปดาห์หนัก" และ "สัปดาห์ผ่อน (Deload)"</h2>
+    <p>
+      ระบบการฝึกระดับมืออาชีพจะไม่มีการสั่งให้คุณเล่นเต็ม 100% ตลอดทั้งปี โค้ชจะวางโครงสร้างตารางซ้อมเป็นวงจร (Cycles) เช่น ฝึกหนักและพัฒนาความเข้มข้นขึ้นเรื่อยๆ ต่อเนื่องกัน 3 สัปดาห์ (Accumulation Phase) 
+    </p>
+    <p>
+      หลังจากนั้นในสัปดาห์ที่ 4 จะเป็นสัปดาห์ <strong>Deload (สัปดาห์ผ่อน)</strong> ซึ่งเป็นการลดน้ำหนักที่ยกลงมาประมาณ 30-40% หรือลดจำนวนเซ็ตลงครึ่งหนึ่ง การทำ Deload ไม่ได้แปลว่าคุณขี้เกียจนะครับ แต่เป็นการ <span class="highlight-mustard">เคลียร์ความล้าสะสมของระบบประสาทส่วนกลาง (CNS)</span> และข้อต่อต่างๆ เพื่อเตรียมความพร้อมให้ร่างกายสามารถกลับไปไต่ระดับความหนักครั้งใหม่ได้ดีและปลอดภัยยิ่งขึ้น
+    </p>
+  </div>
+
+  <!-- ข้อ 3 -->
+  <div class="content-block">
+    <h2><span>03</span> การแบ่งสัดส่วนกล้ามเนื้อ (Split Routine) ที่ไม่ทับซ้อนกัน</h2>
+    <p>
+      การจัดโปรแกรมที่ดีต้องคำนึงถึงระยะเวลาการฟื้นตัวของกล้ามเนื้อแต่ละมัด (ซึ่งปกติจะใช้เวลาประมาณ 48-72 ชั่วโมง) การจัดตารางซ้อมที่สะเปะสะปะ เช่น เล่นอกและหน้าแขนติดต่อกัน 3 วันรวด จะทำให้กล้ามเนื้อล้าเกินไปจนอักเสบและหยุดเติบโต
+    </p>
+    <p>
+      ตารางซ้อมระดับพรีเมียมจะถูกออกแบบให้กล้ามเนื้อแต่ละส่วนทำงานแยกกันอย่างชัดเจน เช่น ระบบ <strong>Push/Pull/Legs</strong> (วันผลัก/วันดึง/วันเล่นขา) หรือการจับคู่กล้ามเนื้อมัดใหญ่และมัดเล็กที่ช่วยส่งเสริมกัน เพื่อให้มั่นใจว่าในขณะที่คุณกำลังขยับไปฝึกกล้ามเนื้อมัดใหม่ กล้ามเนื้อมัดเก่าที่คุณเพิ่งเล่นไปเมื่อวานจะได้รับการพักผ่อนอย่างเต็มที่ 100%
+    </p>
+  </div>
+
+  <!-- กล่องสรุป -->
+  <div class="summary-box">
+    <h3>📌 3 หัวใจหลักของการจัดโปรแกรมออกกำลังกายให้เห็นผล</h3>
+    <ul class="summary-list">
+      <li><strong>ซ้อมอย่างมีเป้าหมาย:</strong> มีตารางบันทึกน้ำหนักและจำนวนครั้ง เพื่อทำ Progressive Overload อย่างเป็นระบบ</li>
+      <li><strong>หนักสลับเบาอย่างฉลาด:</strong> มีวันพักที่ชัดเจน และบรรจุสัปดาห์ Deload เพื่อรีเซ็ตร่างกายและระบบประสาท</li>
+      <li><strong>แบ่งสัดส่วนให้ถูกต้อง:</strong> จัดตารางฝึกไม่ให้กล้ามเนื้อมัดเดิมทำงานซ้ำซ้อนกันจนเสี่ยงต่อภาวะ Over-training</li>
+    </ul>
+  </div>
+
+  <!-- โซนปิดท้าย ชวนคุย/สมัคร -->
+  <div class="cta-zone">
+    <h4>📊 อยากได้ตารางฝึกส่วนตัวที่ไม่ต้องลองผิดลองถูกเองไหม?</h4>
+    <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">ให้ทีมเทรนเนอร์มืออาชีพที่ Sam Fitness ออกแบบตารางซ้อมหนักสลับเบา และโปรแกรมโภชนาการพรีเมียมที่ตรงกับไลฟ์สไตล์ของคุณโดยเฉพาะวันนี้!</p>
+    <a href="#" class="btn">รับตารางฝึกส่วนตัวฟรี</a>
+  </div>
+
+  <!-- ปุ่มกลับหน้าหลัก -->
+  <div style="text-align: center; margin-top: 50px;">
+    <a href="PT1.html" class="btn btn-secondary">← ย้อนกลับ</a>
+    <a href="sam.html" class="btn btn-secondary">🏠 กลับหน้าแรก</a>
+  </div>
+
+</div>
+
+</body>
+</html>

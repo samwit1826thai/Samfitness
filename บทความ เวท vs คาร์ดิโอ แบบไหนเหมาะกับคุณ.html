@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เวท VS คาร์ดิโอ แบบไหนที่ใช่สำหรับคุณ | Sam Fitness</title>
+
+<!-- นำเข้าฟอนต์ Kanit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* การตั้งค่าพื้นฐาน: คุมโทนโมเดิร์นคลีน สบายตาตามภาพลักษณ์ของยิม */
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background: #f4f5f7; /* พื้นหลังเทาอ่อนนุ่มนวล */
+  color: #2b2b2b; /* ตัวอักษรสีเข้มจัด แต่อ่อนกว่าดำสนิทเพื่อลดความล้าของสายตา */
+  line-height: 2.0; /* เพิ่มช่องว่างระหว่างบรรทัดให้อ่านง่าย */
+  letter-spacing: 0.3px;
+}
+
+/* Banner หัวบทความ */
+.article-banner {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), 
+              url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1200') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.banner-content {
+  max-width: 800px;
+}
+
+.banner-content h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0 15px 0;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.banner-content h1 span {
+  color: #e5a93b; /* สีเหลืองมัสตาร์ดพรีเมียม */
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: #e5a93b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* คอนเทนเนอร์เนื้อหา */
+.article-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 50px 20px 100px 20px;
+}
+
+/* การ์ดเนื้อหาขาวคลีน */
+.content-block {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaeaea;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #4a4a4a;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+.highlight-mustard {
+  color: #d2931b;
+  font-weight: 600;
+}
+
+.highlight-dark {
+  color: #000000;
+  font-weight: 600;
+  border-bottom: 2px solid #e5a93b;
+}
+
+/* หัวข้อบทความภายใน */
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 span {
+  background: #e5a93b;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* บล็อกโควทข้อความเน้นย้ำ */
+blockquote {
+  background: #fff9ed;
+  border-left: 4px solid #e5a93b;
+  margin: 40px 0;
+  padding: 25px;
+  border-radius: 0 12px 12px 0;
+  text-align: center;
+}
+
+blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #b77b06;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* กล่องสรุปใจความสำคัญ */
+.summary-box {
+  background: #1e1e1e; /* ใช้สีดำเข้มตัดเพื่อความมีมิติ */
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 45px;
+  color: #ffffff;
+}
+
+.summary-box h3 {
+  color: #e5a93b;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.summary-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.summary-list li {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+.summary-list li strong {
+  color: #ffffff;
+}
+.summary-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* โซนปุ่มปิดท้ายบทความ */
+.cta-zone {
+  text-align: center;
+  margin-top: 50px;
+  padding: 45px 30px;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.cta-zone h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ปุ่มหลักเหลืองมัสตาร์ด */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: #e5a93b;
+  color: #000000;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  margin: 10px;
+  box-shadow: 0 4px 12px rgba(229, 169, 59, 0.2);
+}
+
+.btn:hover {
+  background: #cb9228;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(229, 169, 59, 0.35);
+}
+
+/* ปุ่มรองสีเทาอ่อนกลืนกับดีไซน์ */
+.btn-secondary {
+  background: #eaeaea;
+  color: #4a4a4a;
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: #dcdcdc;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Banner หัวบทความ -->
+<div class="article-banner">
+  <div class="banner-content">
+    <div class="meta-info">✏️ FIT COMPARISON BY SAM FITNESS</div>
+    <h1>เวท VS คาร์ดิโอ แบบไหนเหมาะกับคุณ? <span>เจาะลึกข้อดีเพื่อการเลือกวิธีออกกำลังกายที่ตอบโจทย์ที่สุด</span></h1>
+    <div class="meta-info" style="color: #bbb; font-size: 0.8rem; font-weight: 400; margin-top: 10px;">⏱️ ใช้เวลาอ่านประมาณ 3 นาที</div>
+  </div>
+</div>
+
+<!-- ส่วนเนื้อหาบทความ -->
+<div class="article-container">
+  
+  <!-- เกริ่นนำ -->
+  <div class="content-block" style="background: transparent; border: none; padding: 0; box-shadow: none; margin-bottom: 40px;">
+    <p>
+      เมื่อก้าวเท้าเข้ายิม ภาพที่เรามักจะเห็นจนชินตาคือฝั่งหนึ่งเต็มไปด้วยผู้คนที่วิ่งอย่างแข็งขันอยู่บนลู่วิ่งไฟฟ้า ส่วนอีกฝั่งหนึ่งก็เต็มไปด้วยกลุ่มคนที่ตั้งหน้าตั้งตายกดัมเบลและบาร์เบลอย่างจริงจัง จนเกิดเป็นคำถามคาใจยอดฮิตว่า <strong>"แล้วตัวเราควรจะเลือกเล่นแบบไหนดี?"</strong>
+    </p>
+    <p>
+      หลายคนคิดว่าอยากผอมต้องวิ่ง (คาร์ดิโอ) ส่วนอยากล่ำต้องยกเหล็ก (เวทเทรนนิ่ง) แต่ความจริงในหลักวิทยาศาสตร์การกีฬานั้นมีมิติที่ลึกซึ้งกว่านั้นครับ 
+    </p>
+    <p>
+      บทความนี้เราจะมาชำแหละข้อดีของทั้งสองรูปแบบให้เห็นกันชัดๆ เพื่อให้คุณเลือกหยิบไปใช้ให้ <span class="highlight-dark">ตรงกับเป้าหมาย รูปร่าง และไลฟ์สไตล์</span> ของคุณมากที่สุดครับ
+    </p>
+  </div>
+
+  <!-- ข้อ 1 -->
+  <div class="content-block">
+    <h2><span>01</span> เวทเทรนนิ่ง (Weight Training): สายสร้างเตาเผาและปั้นทรง</h2>
+    <p>
+      การเล่นเวทคือการออกกำลังกายแรงต้านเพื่อมุ่งเน้นไปที่การทำงานของกล้ามเนื้อโดยตรง ข้อดีที่เป็นจุดเด่นที่สุดคือ <strong>"การปรับเปลี่ยนโครงสร้างรูปร่าง"</strong> หากคุณต้องการมีเอวที่คอดลง มีสะโพกที่ผุดผ่อง หรือมีแผ่นอกและหัวไหล่ที่ผึ่งผาย คาร์ดิโอไม่สามารถให้สิ่งนี้ได้ แต่เวทเทรนนิ่งทำได้ครับ
+    </p>
+    <p>
+      นอกจากนี้ การเล่นเวทยังช่วยเพิ่มมวลกล้ามเนื้อ ซึ่งกล้ามเนื้อเปรียบเสมือน <span class="highlight-mustard">"เตาเผาพลังงานส่วนตัว"</span> ยิ่งคุณมีกล้ามเนื้อมาก ร่างกายก็ยิ่งเผาผลาญพลังงานในชีวิตประจำวันได้สูงขึ้นตามไปด้วย แม้ในวันที่คุณไม่ได้ออกกำลังกายเลยก็ตาม
+    </p>
+    <p>
+      <strong>เหมาะสำหรับคนกลุ่มไหน?</strong> คนที่ต้องการกระชับสัดส่วนให้เฟิร์มตึง ไม่อยากหุ่นหย่อนคล้อย, คนที่อยากเพิ่มน้ำหนักแบบมีคุณภาพ, และผู้ที่ต้องการเพิ่มอัตราการเผาผลาญในระยะยาว
+    </p>
+  </div>
+
+  <!-- โควทคำพูด -->
+  <blockquote>
+    <p>"คาร์ดิโอช่วยลดขนาดตัวคุณให้เล็กลง แต่เวทเทรนนิ่งคือสิ่งที่จะกำหนดว่ารูปร่างของคุณจะออกมาสวยงามแค่ไหน"</p>
+  </blockquote>
+
+  <!-- ข้อ 2 -->
+  <div class="content-block">
+    <h2><span>02</span> คาร์ดิโอ (Cardio): สายรีดไขมันและเสริมความอึดให้หัวใจ</h2>
+    <p>
+      คาร์ดิโอ หรือ Cardiovascular Training คือการออกกำลังกายที่เน้นกระตุ้นระบบไหลเวียนโลหิตและระบบหายใจ เช่น การวิ่ง การปั่นจักรยาน หรือการว่ายน้ำ จุดเด่นหลักคือ <strong>"การดึงพลังงานและไขมันมาใช้ได้อย่างรวดเร็วในขณะที่เล่น"</strong>
+    </p>
+    <p>
+      การทำคาร์ดิโออย่างสม่ำเสมอจะช่วยให้หัวใจและปอดของคุณแข็งแรงอย่างมาก อาการเหนื่อยง่ายเวลาเดินขึ้นบันไดจะหายไป และช่วยลดความเสี่ยงต่อโรคความดันโลหิตรวมถึงไขมันอุดตันในเส้นเลือดได้อย่างดีเยี่ยม
+    </p>
+    <p>
+      <strong>เหมาะสำหรับคนกลุ่มไหน?</strong> คนที่ต้องการลดน้ำหนักอย่างเร่งด่วน, คนที่ต้องการลดไขมันสะสมส่วนเกิน, และผู้ที่ต้องการเพิ่มความอึด ความทนทาน (Stamina) ให้กับร่างกายในการทำกิจกรรมต่างๆ
+    </p>
+  </div>
+
+  <!-- ข้อ 3 -->
+  <div class="content-block">
+    <h2><span>03</span> ทางเลือกที่ดีที่สุด: ส่วนผสมที่ลงตัว (Hybrid Training)</h2>
+    <p>
+      ถ้าคำตอบคืออยากทั้งหุ่นดีและสุขภาพแข็งแรงล่ะ? คำตอบที่ถูกต้องที่สุดจากโค้ชมืออาชีพคือ <span class="highlight-mustard">"ไม่จำเป็นต้องเลือกอย่างใดอย่างหนึ่ง แต่ต้องทำควบคู่กันอย่างฉลาด"</span> ครับ
+    </p>
+    <p>
+      สูตรสำเร็จระดับพรีเมียมที่แนะนำคือ ให้เริ่มจากการเล่นเวทเทรนนิ่งก่อนประมาณ 45-60 นาที เพื่อใช้พลังงานจากน้ำตาลในกล้ามเนื้อ (Glycogen) ให้เต็มที่ จากนั้นปิดท้ายด้วยการคาร์ดิโอต่ออีก 20-30 นาที ซึ่งจะเป็นช่วงเวลาที่ร่างกายจะดึงไขมันสะสมออกมาเผาผลาญได้อย่างเต็มเม็ดเต็มหน่วยพอดี วิธีนี้จะทำให้คุณได้ทั้งหุ่นที่เฟิร์มมีมิติ และหัวใจที่แข็งแรงไปพร้อมๆ กัน
+    </p>
+  </div>
+
+  <!-- กล่องสรุป -->
+  <div class="summary-box">
+    <h3>📌 สรุปแนวทางการเลือกให้เหมาะกับเป้าหมาย</h3>
+    <ul class="summary-list">
+      <li><strong>เน้นสร้างส่วนเว้าโค้ง เพิ่มมวลกล้ามเนื้อ เพิ่มระบบเผาผลาญระยะยาว</strong> → เลือกเน้นหนักไปที่ <strong>"เวทเทรนนิ่ง"</strong></li>
+      <li><strong>เน้นลดน้ำหนักด่วน รีดไขมันส่วนเกิน สร้างความอึดให้ปอดและหัวใจ</strong> → เลือกเน้นหนักไปที่ <strong>"คาร์ดิโอ"</strong></li>
+      <li><strong>อยากหุ่นลีน สัดส่วนชัดเจน และสุขภาพดีครบเครื่อง</strong> → เลือกทำ <strong>"เวทเทรนนิ่งก่อน แล้วต่อด้วยคาร์ดิโอ"</strong></li>
+    </ul>
+  </div>
+
+  <!-- โซนปิดท้าย ชวนคุย/สมัคร -->
+  <div class="cta-zone">
+    <h4>กำหนดสัดส่วนโปรแกรมไม่ถูก กลัวทำแล้วไม่เห็นผลใช่ไหม?</h4>
+    <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">ให้ทีมเทรนเนอร์ที่ Sam Fitness ช่วยคำนวณและจัดสัดส่วนโปรแกรมเวทและคาร์ดิโอที่สมดุลกับรูปร่างของคุณโดยเฉพาะวันนี้ เพื่อผลลัพธ์ที่ไวขึ้น 2 เท่า!</p>
+    <a href="#" class="btn">รับการจัดโปรแกรมส่วนตัวฟรี</a>
+  </div>
+
+  <!-- ปุ่มกลับหน้าหลัก -->
+  <div style="text-align: center; margin-top: 50px;">
+    <a href="PT1.html" class="btn btn-secondary">← ย้อนกลับ</a>
+    <a href="sam.html" class="btn btn-secondary">🏠 กลับหน้าแรก</a>
+  </div>
+
+</div>
+
+</body>
+</html>

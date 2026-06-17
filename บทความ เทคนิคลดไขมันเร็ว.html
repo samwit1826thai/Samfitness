@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ลดไขมันเร็วขึ้นด้วยเทรนเนอร์ | Sam Fitness</title>
+
+<!-- นำเข้าฟอนต์ Kanit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* การตั้งค่าพื้นฐาน: คุมโทนโมเดิร์นคลีน สบายตาตามภาพลักษณ์ของยิม */
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background: #f4f5f7; /* พื้นหลังเทาอ่อนนุ่มนวล */
+  color: #2b2b2b; /* ตัวอักษรสีเข้มจัด แต่อ่อนกว่าดำสนิทเพื่อลดความล้าของสายตา */
+  line-height: 2.0; /* เพิ่มช่องว่างระหว่างบรรทัดให้อ่านง่าย */
+  letter-spacing: 0.3px;
+}
+
+/* Banner หัวบทความ */
+.article-banner {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), 
+              url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.banner-content {
+  max-width: 800px;
+}
+
+.banner-content h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0 15px 0;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.banner-content h1 span {
+  color: #e5a93b; /* สีเหลืองมัสตาร์ดพรีเมียม */
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: #e5a93b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* คอนเทนเนอร์เนื้อหา */
+.article-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 50px 20px 100px 20px;
+}
+
+/* การ์ดเนื้อหาขาวคลีน */
+.content-block {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaeaea;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #4a4a4a;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+.highlight-mustard {
+  color: #d2931b;
+  font-weight: 600;
+}
+
+.highlight-dark {
+  color: #000000;
+  font-weight: 600;
+  border-bottom: 2px solid #e5a93b;
+}
+
+/* หัวข้อบทความภายใน */
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 span {
+  background: #e5a93b;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* บล็อกโควทข้อความเน้นย้ำ */
+blockquote {
+  background: #fff9ed;
+  border-left: 4px solid #e5a93b;
+  margin: 40px 0;
+  padding: 25px;
+  border-radius: 0 12px 12px 0;
+  text-align: center;
+}
+
+blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #b77b06;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* กล่องสรุปใจความสำคัญ */
+.summary-box {
+  background: #1e1e1e; /* ใช้สีดำเข้มตัดเพื่อความมีมิติ */
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 45px;
+  color: #ffffff;
+}
+
+.summary-box h3 {
+  color: #e5a93b;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.summary-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.summary-list li {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+.summary-list li strong {
+  color: #ffffff;
+}
+.summary-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* โซนปุ่มปิดท้ายบทความ */
+.cta-zone {
+  text-align: center;
+  margin-top: 50px;
+  padding: 45px 30px;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.cta-zone h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ปุ่มหลักเหลืองมัสตาร์ด */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: #e5a93b;
+  color: #000000;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  margin: 10px;
+  box-shadow: 0 4px 12px rgba(229, 169, 59, 0.2);
+}
+
+.btn:hover {
+  background: #cb9228;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(229, 169, 59, 0.35);
+}
+
+/* ปุ่มรองสีเทาอ่อนกลืนกับดีไซน์ */
+.btn-secondary {
+  background: #eaeaea;
+  color: #4a4a4a;
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: #dcdcdc;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Banner หัวบทความ -->
+<div class="article-banner">
+  <div class="banner-content">
+    <div class="meta-info">✏️ FIT KNOWLEDGE BY SAM FITNESS</div>
+    <h1>ลดไขมันเร่งด่วน! <span>เทคนิคเพิ่มอัตราเผาผลาญให้สูงขึ้น ด้วยการมีโค้ชประกบ</span></h1>
+    <div class="meta-info" style="color: #bbb; font-size: 0.8rem; font-weight: 400; margin-top: 10px;">⏱️ ใช้เวลาอ่านประมาณ 3 นาที</div>
+  </div>
+</div>
+
+<!-- ส่วนเนื้อหาบทความ -->
+<div class="article-container">
+  
+  <!-- เกริ่นนำ -->
+  <div class="content-block" style="background: transparent; border: none; padding: 0; box-shadow: none; margin-bottom: 40px;">
+    <p>
+      เป้าหมายยอดฮิตอันดับหนึ่งของคนเข้ายิมคือการ <strong>"ลดไขมัน"</strong> แต่ทำไมหลายคนอดอาหารก็แล้ว วิ่งบนลู่วิ่งวันละเป็นชั่วโมงก็แล้ว น้ำหนักกลับนิ่งสนิท แถมพุงยังไม่ยุบลงเลย?
+    </p>
+    <p>
+      นั่นเป็นเพราะว่าคุณกำลังโฟกัสผิดจุดครับ การลดไขมันที่แท้จริงไม่ได้ขึ้นอยู่กับการกินให้น้อยที่สุด แต่ขึ้นอยู่กับการทำให้ <span class="highlight-mustard">เตาเผาพลังงานในร่างกาย (Metabolism)</span> ทำงานได้มีประสิทธิภาพสูงสุดต่างหาก และนี่คือเหตุผลทางวิทยาศาสตร์ว่าทำไมการมีเทรนเนอร์ส่วนตัวคอยประกบ ถึงช่วยเร่งการเผาผลาญไขมันได้เร็วกว่าการเล่นเองอย่างเห็นได้ชัดครับ
+    </p>
+  </div>
+
+  <!-- ข้อ 1 -->
+  <div class="content-block">
+    <h2><span>01</span> กระตุ้น EPOC (Afterburn Effect) เผาผลาญต่อแม้หยุดเล่น</h2>
+    <p>
+      เวลาวิ่งเหยาะๆ บนลู่วิ่ง ร่างกายจะเผาผลาญพลังงานแค่ "ตอนที่วิ่ง" เท่านั้น พอคุณก้าวขาลงจากเครื่อง การเผาผลาญก็แทบจะหยุดลงทันที 
+    </p>
+    <p>
+      แต่โค้ชมืออาชีพจะใช้เทคนิคการฝึกที่เรียกว่า <span class="highlight-dark">High-Intensity Weight Training</span> ร่วมกับคาร์ดิโอที่ถูกออกแบบมาเฉพาะบุคคล ซึ่งจะกระตุ้นสภาวะ <strong>EPOC (Excess Post-exercise Oxygen Consumption)</strong> หรือที่เรียกกันว่า Afterburn Effect ทำให้ร่างกายของคุณกลายเป็นเตาเผาไขมันต่อเนื่องไปอีก 24-48 ชั่วโมง แม้ว่าคุณจะนอนหลับอยู่บ้านก็ตามครับ
+    </p>
+  </div>
+
+  <!-- โควทคำพูด -->
+  <blockquote>
+    <p>"อย่าเพิ่งโฟกัสที่การเผาผลาญระหว่างออกกำลังกาย แต่จงสร้างกล้ามเนื้อเพื่อเผาผลาญไขมันในตอนที่คุณนอนหลับ"</p>
+  </blockquote>
+
+  <!-- ข้อ 2 -->
+  <div class="content-block">
+    <h2><span>02</span> รักษามวลกล้ามเนื้อ ไม่ให้ระบบเผาผลาญพัง</h2>
+    <p>
+      ความผิดพลาดครั้งใหญ่ของมือใหม่สายลดน้ำหนักคือ "การคาร์ดิโอหนักร่วมกับการอดอาหาร" ซึ่งวิธีนี้จะทำให้ร่างกายสลายกล้ามเนื้อมาใช้เป็นพลังงาน เมื่อกล้ามเนื้อลดลง ผลที่ตามมาคือระบบเผาผลาญจะต่ำลงเรื่อยๆ จนเกิดอาการ <strong>"โยโย่เอฟเฟกต์"</strong> ในที่สุด
+    </p>
+    <p>
+      การมีเทรนเนอร์คอยประกบจะช่วยจัดบาลานซ์ระหว่างการ <span class="highlight-mustard">สร้างกล้ามเนื้อ (เพื่อเพิ่มขนาดเตาเผา)</span> ควบคู่ไปกับการคุมสารอาหารที่ถูกต้อง โค้ชจะคำนวณโปรตีน คาร์โบไฮเดรต และไขมันดีที่ร่างกายต้องการ เพื่อให้ไขมันลดลงแต่กล้ามเนื้อยังอยู่ครบถ้วน ส่งผลให้รูปร่างกระชับ เฟิร์มตึง ไม่หย่อนคล้อย
+    </p>
+  </div>
+
+  <!-- ข้อ 3 -->
+  <div class="content-block">
+    <h2><span>03</span> ปรับเปลี่ยนโปรแกรมแบบ Real-time เมื่อเจอกำแพง (Plateau)</h2>
+    <p>
+      เมื่อลดไขมันไปได้สัก 2-3 สัปดาห์ ร่างกายที่อัจฉริยะของเราจะเริ่มปรับตัวและชินกับพฤติกรรมเดิม ทำให้น้ำหนักเริ่มนิ่ง ซึ่งคนส่วนใหญ่พอน้ำหนักไม่ลดก็จะท้อและล้มเลิกไป
+    </p>
+    <p>
+      แต่ถ้ามีโค้ช โค้ชจะคอยแทร็กความคืบหน้าสัปดาห์ต่อสัปดาห์ เมื่อไหร่ที่ร่างกายเริ่มชิน โค้ชจะทำการ <span class="highlight-mustard">"ช็อคร่างกาย"</span> ด้วยการปรับโปรแกรมการฝึกใหม่ เปลี่ยนมุมการยก หรือปรับเทคนิคโภชนาการ (เช่น Carb Cycling) เพื่อทำลายกำแพงนั้นทิ้ง และบังคับให้ร่างกายดึงไขมันสะสมออกมาเผาผลาญต่ออย่างต่อเนื่องครับ
+    </p>
+  </div>
+
+  <!-- กล่องสรุป -->
+  <div class="summary-box">
+    <h3>📌 สรุป: ทำไมมีโค้ชถึงลดไขมันได้เร็วกว่า?</h3>
+    <ul class="summary-list">
+      <li><strong>เผาผลาญ 24 ชม.:</strong> ออกแบบท่าฝึกที่กระตุ้น Afterburn Effect เผาไขมันต่อแม้ไม่ได้อยู่ยิม</li>
+      <li><strong>หุ่นเฟิร์มไม่โยโย่:</strong> เน้นลดไขมันร้าย แต่รักษากล้ามเนื้อดี ทำให้ระบบเผาผลาญไม่พัง</li>
+      <li><strong>ก้าวข้ามทุกทางตัน:</strong> มีคนปรับตารางฝึกและอาหารให้ทันทีเมื่อน้ำหนักเริ่มนิ่ง ไม่ปล่อยให้เสียเวลาฟรี</li>
+    </ul>
+  </div>
+
+  <!-- โซนปิดท้าย ชวนคุย/สมัคร -->
+  <div class="cta-zone">
+    <h4>🔥 เบื่อกับการลดน้ำหนักแบบเดิมๆ ที่ไม่ได้ผลแล้วใช่ไหม?</h4>
+    <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">ให้ทีมโค้ชระดับมืออาชีพของ Sam Fitness ออกแบบ "พิมพ์เขียวการลดไขมัน" ที่เหมาะกับระบบเผาผลาญของคุณโดยเฉพาะวันนี้!</p>
+    <a href="#" class="btn">เริ่มต้นโปรแกรมลดไขมันฟรี</a>
+  </div>
+
+  <!-- ปุ่มกลับหน้าหลัก -->
+  <div style="text-align: center; margin-top: 50px;">
+    <a href="PT1.html" class="btn btn-secondary">← ย้อนกลับ</a>
+    <a href="sam.html" class="btn btn-secondary">🏠 กลับหน้าแรก</a>
+  </div>
+
+</div>
+
+</body>
+</html>
